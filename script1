@@ -1,0 +1,47 @@
+--// Config made by @zyler
+local Config = {
+    -- Steal Hitbox
+    ReachSize = 5,               -- how big the arm hitbox is
+    ArmTransparency = 0.9,       -- 0 = fully visible, 1 = invisible
+    ArmColor = Color3.fromRGB(255,224,189), -- skin tone
+}
+
+--// Services
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local player = Players.LocalPlayer
+local gui = player.PlayerGui
+
+--// Steal Hitbox
+local armNames = {
+    "RightHand","LeftHand",
+    "RightLowerArm","LeftLowerArm",
+    "RightUpperArm","LeftUpperArm"
+}
+
+local function resizeArms(character)
+    for _, name in ipairs(armNames) do
+        local arm = character:FindFirstChild(name)
+        if arm then
+            arm.Size = Vector3.new(Config.ReachSize, Config.ReachSize, Config.ReachSize)
+            arm.Transparency = Config.ArmTransparency
+            arm.Material = Enum.Material.SmoothPlastic
+            arm.Color = Config.ArmColor
+            arm.Massless = true
+            arm.CanCollide = false
+        end
+    end
+end
+
+local function setupCharacter(character)
+    task.wait(1)
+    resizeArms(character)
+    character.DescendantAdded:Connect(function(desc)
+        if table.find(armNames, desc.Name) then
+            resizeArms(character)
+        end
+    end)
+end
+
+if player.Character then setupCharacter(player.Character) end
+player.CharacterAdded:Connect(setupCharacter)
