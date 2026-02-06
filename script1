@@ -1,8 +1,8 @@
 --// Config made by @zyler
 local Config = {
     -- Steal Hitbox
-    ReachSize = 3,               -- how big the arm hitbox is
-    ArmTransparency = 0,       -- 0 = fully visible, 1 = invisible
+    ReachSize = 2.5,               -- how big the arm hitbox is
+    ArmTransparency = 0.9,       -- 0 = fully visible, 1 = invisible
     ArmColor = Color3.fromRGB(255,224,189), -- skin tone
 }
 
@@ -27,7 +27,7 @@ local function resizeArms(character)
             arm.Transparency = Config.ArmTransparency
             arm.Material = Enum.Material.SmoothPlastic
             arm.Color = Config.ArmColor
-            arm.Massless = false
+            arm.Massless = true
             arm.CanCollide = false
         end
     end
