@@ -1,7 +1,7 @@
 --// Config made by @zyler
 local Config = {
     -- Steal Hitbox
-    ReachSize = 2.5,               -- how big the arm hitbox is
+    ReachSize = 2.3,               -- how big the arm hitbox is
     ArmTransparency = 0.9,       -- 0 = fully visible, 1 = invisible
     ArmColor = Color3.fromRGB(255,224,189), -- skin tone
 }
